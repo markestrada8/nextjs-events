@@ -1,14 +1,15 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export async function getStaticProps(context) {
-  const { allEvents } = await import('../../../data/data.json')
+  const { allEvents } = await import('/data/data.json')
   const id = context?.params.category
 
   const data = allEvents.filter(event => event.city === id)
 
   return {
-    props: { data: data }
+    props: { data: data, pageName: id }
   }
 }
 
@@ -29,17 +30,19 @@ export async function getStaticPaths() {
   }
 }
 
-const CityEventPage = ({ data }) => {
+const CityEventPage = ({ data, pageName }) => {
   return (
     <div>
-      <h1>Events in {data[0].city.charAt(0).toUpperCase() + data[0].city.slice(1)}</h1>
+
+      <h1>Events in {pageName}</h1>
       <div>
         {data.map(event => (
-          <a key={event.id} href={`/events/${event.city}/${event.id}`}>
+          <Link key={event.id} href={`/events/${event.city}/${event.id}`}>
+
             <Image width={300} height={200} src={event.image} alt="location image" />
             <h2>{event.title}</h2>
             <p>{event.description}</p>
-          </a>
+          </Link>
         ))}
       </div>
     </div>
