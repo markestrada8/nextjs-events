@@ -2,10 +2,10 @@ import EventCategory from '../../.././src/components/events/event-category'
 import React from 'react'
 
 export async function getStaticProps(context) {
-  const { allEvents } = await import('/data/data.json')
+  const { all_events } = await import('/data/data.json')
   const id = context?.params.category
 
-  const data = allEvents.filter(event => event.city === id)
+  const data = all_events.filter(event => event.city === id)
 
   return {
     props: { data: data, pageName: id }

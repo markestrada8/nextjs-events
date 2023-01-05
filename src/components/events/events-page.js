@@ -7,8 +7,8 @@ const EventsPageComponent = ({ data }) => {
     <div className='events_page'>
       {data?.map(event => {
         return (
-          <div className='card'>
-            <Link href={`/events/${event.id}`} key={event.id}>
+          <div className='card' key={event.id}>
+            <Link href={`/events/${event.id}`} >
               <Image width={300} height={450} src={event.image} alt="location image" />
 
               <h2>{event.title}</h2>

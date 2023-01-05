@@ -1,9 +1,9 @@
-import EventCard from '../../../src/components/events/single-event'
+import SingleEvent from '../../../src/components/events/single-event'
 
 export async function getStaticPaths() {
-  const { allEvents } = await import('/data/data.json')
+  const { all_events } = await import('/data/data.json')
 
-  const allPaths = allEvents.map(event => {
+  const allPaths = all_events.map(event => {
     return {
       params: {
         category: event.city,
@@ -20,9 +20,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   // console.log(context)
-  const { allEvents } = await import('/data/data.json')
+  const { all_events } = await import('/data/data.json')
   const id = context?.params.id
-  const eventData = allEvents.find(event => id === event.id)
+  const eventData = all_events.find(event => id === event.id)
 
   return {
     props: {
@@ -31,6 +31,6 @@ export async function getStaticProps(context) {
   }
 }
 
-const EventPage = ({ data }) => <EventCard data={data} />
+const EventPage = ({ data }) => <SingleEvent data={data} />
 
 export default EventPage
