@@ -7,7 +7,7 @@ const EventCategory = ({ data, pageName }) => {
     <div className='event_category'>
       <h1>Events in {pageName}</h1>
       <div className='content'>
-        {data.map(event => (
+        {data?.map(event => (
           <Link key={event.id} href={`/events/${event.city}/${event.id}`} className='card'>
 
             <Image width={300} height={200} src={event.image} alt="location image" />
