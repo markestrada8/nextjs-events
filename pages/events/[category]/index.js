@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import EventCategory from '../../.././src/components/events/event-category'
 import React from 'react'
 
 export async function getStaticProps(context) {
@@ -30,23 +29,6 @@ export async function getStaticPaths() {
   }
 }
 
-const CityEventPage = ({ data, pageName }) => {
-  return (
-    <div>
-
-      <h1>Events in {pageName}</h1>
-      <div>
-        {data.map(event => (
-          <Link key={event.id} href={`/events/${event.city}/${event.id}`}>
-
-            <Image width={300} height={200} src={event.image} alt="location image" />
-            <h2>{event.title}</h2>
-            <p>{event.description}</p>
-          </Link>
-        ))}
-      </div>
-    </div>
-  )
-}
+const CityEventPage = ({ data, pageName }) => <EventCategory data={data} pageName={pageName} />
 
 export default CityEventPage

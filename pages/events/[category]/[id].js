@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import React from 'react'
+import EventCard from '../../../src/components/events/single-event'
 
 export async function getStaticPaths() {
   const { allEvents } = await import('/data/data.json')
@@ -32,16 +31,6 @@ export async function getStaticProps(context) {
   }
 }
 
-const EventPage = ({ data }) => {
-
-  return (
-    <div>
-
-      <Image width={900} height={600} src={data.image} alt="location image" />
-      <h1>{data.title}</h1>
-      <p>{data.description}</p>
-    </div>
-  )
-}
+const EventPage = ({ data }) => <EventCard data={data} />
 
 export default EventPage
